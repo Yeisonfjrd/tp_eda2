@@ -20,7 +20,6 @@ public:
 
 	int** obtenerMatrizAdyacencia(); //getter matrizAdyacencia
 	void pasarListaCiudades(Ciudad arrayDestino[]); //copia lista a la UI
-	int obtenerDistanciaCiudades(int idOrigen, int idDestino); //
 
 	void agregarCiudad();
 	void eliminarCiudad(int idCiudad);
