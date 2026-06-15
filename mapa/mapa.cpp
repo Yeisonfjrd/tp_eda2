@@ -13,22 +13,44 @@ Mapa::Mapa() {
 
   // 1-se lee el archivo de la matriz de adyacencia y se cuentan la cantidad
   // de registros segun saltos de linea
-  std::ifstream archivo("archivos/matriz.dat");
-  if (!archivo.is_open()) {
-    archivo.open("archivos/matriz.dat");
+  std::ifstream matriz("archivos/matriz.dat");
+  if (!matriz.is_open()) {
+    matriz.open("archivos/matriz.dat");
   }
 
   int lineas = 0;
   std::string linea;
-  while (std::getline(archivo, linea)) {
+  while (std::getline(matriz, linea)) {
     lineas++;
   }
-  archivo.close();
 
-  // 2-se asigna ese número a cantidadCiudades
   cantidadCiudades = lineas;
 
-  // 3-se cargan las ciudades en listaCiudades
+  // === 1. PEDIMOS LA MEMORIA PARA LA MATRIZ DE ADYACENCIA ===
+  matrizAdyacencia = new int *[cantidadCiudades];
+  for (int i = 0; i < cantidadCiudades; i++) {
+    matrizAdyacencia[i] = new int[cantidadCiudades];
+  }
+
+  matriz.clear();
+  matriz.seekg(0, std::ios::beg);
+
+  int fila = 0;
+  while (std::getline(matriz, linea)) {
+    std::stringstream ss(linea);
+    int valor;
+    int columna = 0;
+
+    // el ">>" se saltea espacios en blanco y tabs
+    while (ss >> valor && columna < cantidadCiudades) {
+      matrizAdyacencia[fila][columna] = valor;
+      columna++;
+    }
+    fila++;
+  }
+
+  matriz.close();
+
   listaCiudades = new Ciudad[cantidadCiudades];
 
   std::ifstream archCiudades("archivos/ciudades.dat");
@@ -39,21 +61,21 @@ Mapa::Mapa() {
 
     while (std::getline(archCiudades, lineaCiudad) && idx < cantidadCiudades) {
       // 1. Convertimos la línea de texto en un "flujo de datos" de C++
-      std::stringstream flujoLinea(lineaCiudad);
+      std::stringstream fila(lineaCiudad);
 
       // Variables temporales para extraer los datos como strings primero
       std::string strId, nombre, strX, strY;
 
       // 2. Extraemos cada pedazo usando el ';' como guillotina
-      std::getline(flujoLinea, strId, ';');  // Saca el ID como texto
-      std::getline(flujoLinea, nombre, ';'); // Saca el Nombre
-      std::getline(flujoLinea, strX, ';');   // Saca la X como texto
-      std::getline(flujoLinea, strY, ';');   // Saca la Y como texto
+      std::getline(fila, strId, ';');  // Saca el ID como texto
+      std::getline(fila, nombre, ';'); // Saca el Nombre
+      std::getline(fila, strX, ';');   // Saca la X como texto
+      std::getline(fila, strY, ';');   // Saca la Y como texto
 
       // 3. Convertimos los strings a los números reales que corresponden
       int id = std::stoi(strId); // stoi = String To Integer
-	  int x = std::stoi(strX);
-	  int y = std::stoi(strY);
+      int x = std::stoi(strX);
+      int y = std::stoi(strY);
       // 4. Armamos las coordenadas e instanciamos la ciudad en el array
       Coordenadas coords = {(int)x, (int)y};
       listaCiudades[idx] = Ciudad(id, nombre, coords);
@@ -61,7 +83,6 @@ Mapa::Mapa() {
     }
     archCiudades.close();
   }
-  // 4-se carga el puntero en matrizaAdyacencia
 }
 
 // Destructor
@@ -86,38 +107,15 @@ void Mapa::pasarListaCiudades(Ciudad ciudadesInterfaz[]) {
   int indiceUI = 0;
 
   for (int i = 0; i < cantidadCiudades; i++) {
-    // Accedemos con corchetes [i] y llamamos al método con ()
-    //    if (listaCiudades[i].obtenerEstado() == true) {
-    // Si está activa, la copiamos en la posición consecutiva de la UI
-    ciudadesInterfaz[indiceUI] = listaCiudades[i];
-    indiceUI++; // Recién acá avanzamos al siguiente casillero de la pantalla
-                //    }
+
+    if (listaCiudades[i].obtenerEstado() == true) {
+
+      ciudadesInterfaz[indiceUI] = listaCiudades[i];
+      indiceUI++;
+    }
   }
 }
-
-// mucha atencion aca: cuando se copia el array en la UI, hay que en base a ese
-// array dinamico, pintar las ciudades, tal como el trabajo que hizo Matias
-// hardcodeado. Lo que hay que hacer solamente es leer la data del array
-// que se copia mediante este método
 
 int Mapa::obtenerCantidadCiudades() { return cantidadCiudades; }
 
 int **Mapa::obtenerMatrizAdyacencia() { return matrizAdyacencia; }
-// esto que sigue ignorar por ahora
-//  void Mapa::cargarMatriz() {
-//	int matriz[7][7] = {
-//          {0, 335, 504, 314, 277, 105, -1},
-//          {335, 0, 312, 122, -1, -1, 607},
-//          {504, 312, 0, -1, 331, 302, 338},
-//          {314, 122, -1, 0, -1, -1, -1},
-//          {277, -1, 331, -1, 0, -1, -1},
-//          {105, -1, 302, -1, -1, 0, -1},
-//          {-1, 607, 338, -1, -1, -1, 0}
-//      };
-//
-//      for (int i = 0; i < 7; i++) {
-//          for (int j = 0; j < 7; j++) {
-//              this->matrizAdyacencia[i][j] = matriz[i][j];
-//          }
-//      }
-//  }

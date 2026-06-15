@@ -44,7 +44,6 @@ class TForm1 : public TForm {
 
   TPanel *pnlContenido;
   TPanel *pnlCalcularDistancia;
-  TPanel *pnlCiudades;
   TPanel *pnlRutas;
   TPanel *pnlHistorial;
   TComboBox *cbOrigen;
@@ -53,6 +52,7 @@ class TForm1 : public TForm {
   TPanel *btnLimpiarCampos;
   TPanel *btnGuardarHistorial;
   TLabel *lblCiudadOrigen;
+	TPanel *pnlCiudades;
 
   void __fastcall PanelMouseEnter(TObject *Sender);
   void __fastcall PanelMouseLeave(TObject *Sender);

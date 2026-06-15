@@ -387,7 +387,7 @@ object Form1: TForm1
       Align = alClient
       Color = clSilver
       ParentBackground = False
-      TabOrder = 1
+      TabOrder = 0
     end
     object pnlHistorial: TPanel
       Left = 0
@@ -403,24 +403,7 @@ object Form1: TForm1
       Font.Style = []
       ParentBackground = False
       ParentFont = False
-      TabOrder = 2
-    end
-    object pnlCiudades: TPanel
-      Left = 0
-      Top = 0
-      Width = 1155
-      Height = 716
-      Align = alClient
-      Color = clYellow
-      ParentBackground = False
-      TabOrder = 0
-      object Ciudades: TLabel
-        Left = 760
-        Top = 40
-        Width = 49
-        Height = 15
-        Caption = 'Ciudades'
-      end
+      TabOrder = 1
     end
     object pnlCalcularDistancia: TPanel
       Left = 0
@@ -440,7 +423,7 @@ object Form1: TForm1
       Padding.Right = 10
       Padding.Bottom = 10
       ParentBackground = False
-      TabOrder = 3
+      TabOrder = 2
       object PanelMenuCalcular: TPanel
         Left = 10
         Top = 41
@@ -574,8 +557,8 @@ object Form1: TForm1
         object picMapa: TImage
           Left = 0
           Top = 0
-          Width = 896
-          Height = 665
+          Width = 1440
+          Height = 959
           Align = alClient
           AutoSize = True
           Center = True
@@ -1568,6 +1551,8 @@ object Form1: TForm1
           Stretch = True
           ExplicitLeft = 216
           ExplicitTop = 32
+          ExplicitWidth = 896
+          ExplicitHeight = 665
         end
       end
       object Panel4: TPanel
@@ -1588,7 +1573,7 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 274
-          Height = 31
+          Height = 30
           Align = alLeft
           Caption = 'C'#193'LCULO DE RUTA '#211'PTIMA'
           Font.Charset = DEFAULT_CHARSET
@@ -1597,9 +1582,17 @@ object Form1: TForm1
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
           ParentFont = False
-          ExplicitHeight = 30
         end
       end
+    end
+    object pnlCiudades: TPanel
+      Left = 488
+      Top = 336
+      Width = 185
+      Height = 41
+      Caption = 'pnlCiudades'
+      TabOrder = 3
+      OnClick = BtnCiudadesClick
     end
   end
   object pnlTitulo: TPanel
@@ -1615,7 +1608,7 @@ object Form1: TForm1
     object lblNombreEmpresa: TLabel
       Left = 0
       Top = 0
-      Width = 1355
+      Width = 218
       Height = 21
       Align = alTop
       Caption = 'Sistema Inteligente de Logistica'
@@ -1625,7 +1618,6 @@ object Form1: TForm1
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
-      ExplicitWidth = 218
     end
   end
 end
