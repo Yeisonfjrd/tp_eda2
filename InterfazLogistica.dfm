@@ -1660,6 +1660,19 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
         end
+        object Label9: TLabel
+          Left = 520
+          Top = 387
+          Width = 114
+          Height = 15
+          Caption = 'Cte. Luis Piedrabuena'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
       end
       object Panel4: TPanel
         Left = 10

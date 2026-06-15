@@ -3,92 +3,95 @@
 #ifndef InterfazLogisticaH
 #define InterfazLogisticaH
 //---------------------------------------------------------------------------
+#include "Logistica.h"
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
-#include <Vcl.StdCtrls.hpp>
-#include <Vcl.Forms.hpp>
 #include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Forms.hpp>
 #include <Vcl.Graphics.hpp>
 #include <Vcl.Imaging.jpeg.hpp>
 #include <Vcl.Imaging.pngimage.hpp>
-#include "Logistica.h"
+#include <Vcl.StdCtrls.hpp>
+
 //---------------------------------------------------------------------------
-class TForm1 : public TForm
-{
-__published:
-    TPanel *pnlMenu;
-    TPanel *pnlIcono;
+class TForm1 : public TForm {
+  __published : TPanel *pnlMenu;
+  TPanel *pnlIcono;
 
-    TImage *IconoEmpresa;
-    TLabel *lblTitulo1;
-    TLabel *lblTitulo2;
+  TImage *IconoEmpresa;
+  TLabel *lblTitulo1;
+  TLabel *lblTitulo2;
 
-    TPanel *btnCalcularRutas;
-    TLabel *lblCalcularRuta;
-    TImage *IconoCalcular;
+  TPanel *btnCalcularRutas;
+  TLabel *lblCalcularRuta;
+  TImage *IconoCalcular;
 
-    TPanel *BtnCiudades;
-    TLabel *lblCiudades;
-    TImage *IconoCiudadades;
+  TPanel *BtnCiudades;
+  TLabel *lblCiudades;
+  TImage *IconoCiudadades;
 
-    TPanel *BtnRutas;
-    TLabel *lblRutas;
-    TImage *IconoRuta;
+  TPanel *BtnRutas;
+  TLabel *lblRutas;
+  TImage *IconoRuta;
 
-    TPanel *BtnHistorial;
-    TLabel *lblHistorial;
-	TImage *IconoHistorial;
-	TPanel *PanelMenuCalcular;
+  TPanel *BtnHistorial;
+  TLabel *lblHistorial;
+  TImage *IconoHistorial;
+  TPanel *PanelMenuCalcular;
 
-    TPanel *Panel2;
-	TImage *picMapa;
+  TPanel *Panel2;
+  TImage *picMapa;
 
-	TPanel *pnlContenido;
-	TPanel *pnlCalcularDistancia;
-	TPanel *pnlCiudades;
-	TPanel *pnlRutas;
-	TPanel *pnlHistorial;
-	TComboBox *ComboBox1;
-	TComboBox *cbDestino;
-	TPanel *btnCalcularRutaOptima;
-	TPanel *btnLimpiarCampos;
-	TPanel *btnGuardarHistorial;
-	TLabel *lblCiudadOrigen;
-	TLabel *Label2;
-	TLabel *Label3;
-	TLabel *Label4;
-	TLabel *Label5;
-	TLabel *Label6;
-	TLabel *Label7;
-	TLabel *Label8;
+  TPanel *pnlContenido;
+  TPanel *pnlCalcularDistancia;
+  TPanel *pnlCiudades;
+  TPanel *pnlRutas;
+  TPanel *pnlHistorial;
+  TComboBox *ComboBox1;
+  TComboBox *cbDestino;
+  TPanel *btnCalcularRutaOptima;
+  TPanel *btnLimpiarCampos;
+  TPanel *btnGuardarHistorial;
+  TLabel *lblCiudadOrigen;
+  // ESTOS LABELS DEBEN GENERARSE DINAMICAMENTE CON LA LECTURA
+  // DELARCHIVO
+  TLabel *Label2;
+  TLabel *Label3;
+  TLabel *Label4;
+  TLabel *Label5;
+  TLabel *Label6;
+  TLabel *Label7;
+  TLabel *Label8;
+  TLabel *Label9;
 
-void __fastcall PanelMouseEnter(TObject *Sender);
-void __fastcall PanelMouseLeave(TObject *Sender);
+  void __fastcall PanelMouseEnter(TObject *Sender);
+  void __fastcall PanelMouseLeave(TObject *Sender);
 
-void __fastcall btnCalcularRutasClick(TObject *Sender);
-void __fastcall BtnCiudadesClick(TObject *Sender);
-void __fastcall BtnRutasClick(TObject *Sender);
-void __fastcall BtnHistorialClick(TObject *Sender);
-void __fastcall btnCalcularRutaOptimaClick(TObject *Sender);
-void __fastcall btnLimpiarCamposClick(TObject *Sender);
-void __fastcall PanelMapaResize(TObject *Sender);
-void __fastcall MapaOverlayPaint(TObject *Sender);
+  void __fastcall btnCalcularRutasClick(TObject *Sender);
+  void __fastcall BtnCiudadesClick(TObject *Sender);
+  void __fastcall BtnRutasClick(TObject *Sender);
+  void __fastcall BtnHistorialClick(TObject *Sender);
+  void __fastcall btnCalcularRutaOptimaClick(TObject *Sender);
+  void __fastcall btnLimpiarCamposClick(TObject *Sender);
+  void __fastcall PanelMapaResize(TObject *Sender);
+  void __fastcall MapaOverlayPaint(TObject *Sender);
 
 private:
-	SistemaLogistico sistemaLogistico;
-	TPaintBox *mapaOverlay;
-	ResultadoRuta ultimaRuta;
-	bool hayRutaDibujada;
-	void inicializarInterfazLogistica();
-	void actualizarCombosCiudades();
-	void redibujarMapa();
-	TPoint puntoCiudadEnMapa(int id) const;
-	void pintarConexiones(TCanvas *canvas);
-	void pintarRutaCalculada(TCanvas *canvas);
-	void pintarCiudades(TCanvas *canvas);
-	int obtenerIdCiudadSeleccionada(TComboBox *combo);
+  SistemaLogistico sistemaLogistico;
+  TPaintBox *mapaOverlay;
+  ResultadoRuta ultimaRuta;
+  bool hayRutaDibujada;
+  void inicializarInterfazLogistica();
+  void actualizarCombosCiudades();
+  void redibujarMapa();
+  TPoint puntoCiudadEnMapa(int id) const;
+  void pintarConexiones(TCanvas *canvas);
+  void pintarRutaCalculada(TCanvas *canvas);
+  void pintarCiudades(TCanvas *canvas);
+  int obtenerIdCiudadSeleccionada(TComboBox *combo);
+
 public:
-    __fastcall TForm1(TComponent* Owner);
+  __fastcall TForm1(TComponent *Owner);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm1 *Form1;
