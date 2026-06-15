@@ -457,7 +457,7 @@ object Form1: TForm1
         TabOrder = 0
         object lblCiudadOrigen: TLabel
           Left = 72
-          Top = 81
+          Top = 86
           Width = 77
           Height = 15
           Caption = 'Ciudad Origen'
@@ -489,7 +489,7 @@ object Form1: TForm1
           Style = csDropDownList
           TabOrder = 0
         end
-        object ComboBox1: TComboBox
+        object cbOrigen: TComboBox
           Left = 11
           Top = 112
           Width = 200
@@ -541,7 +541,7 @@ object Form1: TForm1
         end
         object btnGuardarHistorial: TPanel
           Left = 11
-          Top = 639
+          Top = 599
           Width = 110
           Height = 35
           Caption = 'Guardar Historial'
@@ -1566,112 +1566,8 @@ object Form1: TForm1
             0000000000000000000000000000000000000000000000000000000000000000
             0003FFD9}
           Stretch = True
-          ExplicitLeft = -56
-          ExplicitTop = -96
-        end
-        object Label2: TLabel
-          Left = 288
-          Top = 428
-          Width = 55
-          Height = 15
-          Caption = 'El Calafate'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -12
-          Font.Name = 'Segoe UI'
-          Font.Style = []
-          ParentFont = False
-        end
-        object Label3: TLabel
-          Left = 392
-          Top = 284
-          Width = 79
-          Height = 15
-          Caption = 'Gdor. Gregores'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -12
-          Font.Name = 'Segoe UI'
-          Font.Style = []
-          ParentFont = False
-        end
-        object Label4: TLabel
-          Left = 552
-          Top = 325
-          Width = 76
-          Height = 15
-          Caption = 'Pto. San Julian'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -12
-          Font.Name = 'Segoe UI'
-          Font.Style = []
-          ParentFont = False
-        end
-        object Label5: TLabel
-          Left = 448
-          Top = 347
-          Width = 39
-          Height = 15
-          Caption = 'Corpen'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -12
-          Font.Name = 'Segoe UI'
-          Font.Style = []
-          ParentFont = False
-        end
-        object Label6: TLabel
-          Left = 440
-          Top = 532
-          Width = 51
-          Height = 15
-          Caption = 'Aike Guer'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -12
-          Font.Name = 'Segoe UI'
-          Font.Style = []
-          ParentFont = False
-        end
-        object Label7: TLabel
-          Left = 368
-          Top = 404
-          Width = 96
-          Height = 15
-          Caption = 'Gendarme Barreto'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -12
-          Font.Name = 'Segoe UI'
-          Font.Style = []
-          ParentFont = False
-        end
-        object Label8: TLabel
-          Left = 504
-          Top = 112
-          Width = 76
-          Height = 15
-          Caption = 'Pico Truncado'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -12
-          Font.Name = 'Segoe UI'
-          Font.Style = []
-          ParentFont = False
-        end
-        object Label9: TLabel
-          Left = 520
-          Top = 387
-          Width = 114
-          Height = 15
-          Caption = 'Cte. Luis Piedrabuena'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -12
-          Font.Name = 'Segoe UI'
-          Font.Style = []
-          ParentFont = False
+          ExplicitLeft = 216
+          ExplicitTop = 32
         end
       end
       object Panel4: TPanel

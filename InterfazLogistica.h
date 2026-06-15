@@ -12,7 +12,7 @@
 #include <Vcl.Imaging.jpeg.hpp>
 #include <Vcl.Imaging.pngimage.hpp>
 #include <Vcl.StdCtrls.hpp>
-
+#include <ciudad.h>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm {
   __published : TPanel *pnlMenu;
@@ -47,22 +47,12 @@ class TForm1 : public TForm {
   TPanel *pnlCiudades;
   TPanel *pnlRutas;
   TPanel *pnlHistorial;
-  TComboBox *ComboBox1;
+  TComboBox *cbOrigen;
   TComboBox *cbDestino;
   TPanel *btnCalcularRutaOptima;
   TPanel *btnLimpiarCampos;
   TPanel *btnGuardarHistorial;
   TLabel *lblCiudadOrigen;
-  // ESTOS LABELS DEBEN GENERARSE DINAMICAMENTE CON LA LECTURA
-  // DELARCHIVO
-  TLabel *Label2;
-  TLabel *Label3;
-  TLabel *Label4;
-  TLabel *Label5;
-  TLabel *Label6;
-  TLabel *Label7;
-  TLabel *Label8;
-  TLabel *Label9;
 
   void __fastcall PanelMouseEnter(TObject *Sender);
   void __fastcall PanelMouseLeave(TObject *Sender);
@@ -82,7 +72,7 @@ private:
   ResultadoRuta ultimaRuta;
   bool hayRutaDibujada;
   void inicializarInterfazLogistica();
-  void actualizarCombosCiudades();
+  void actualizarCombosCiudades(Ciudad* ciudadesUI);
   void redibujarMapa();
   TPoint puntoCiudadEnMapa(int id) const;
   void pintarConexiones(TCanvas *canvas);
