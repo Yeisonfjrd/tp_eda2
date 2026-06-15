@@ -1565,8 +1565,100 @@ object Form1: TForm1
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0003FFD9}
-          ExplicitWidth = 1440
-          ExplicitHeight = 959
+          Stretch = True
+          ExplicitLeft = -56
+          ExplicitTop = -96
+        end
+        object Label2: TLabel
+          Left = 288
+          Top = 428
+          Width = 55
+          Height = 15
+          Caption = 'El Calafate'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label3: TLabel
+          Left = 392
+          Top = 284
+          Width = 79
+          Height = 15
+          Caption = 'Gdor. Gregores'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label4: TLabel
+          Left = 552
+          Top = 325
+          Width = 76
+          Height = 15
+          Caption = 'Pto. San Julian'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label5: TLabel
+          Left = 448
+          Top = 347
+          Width = 39
+          Height = 15
+          Caption = 'Corpen'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label6: TLabel
+          Left = 440
+          Top = 532
+          Width = 51
+          Height = 15
+          Caption = 'Aike Guer'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label7: TLabel
+          Left = 368
+          Top = 404
+          Width = 96
+          Height = 15
+          Caption = 'Gendarme Barreto'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label8: TLabel
+          Left = 504
+          Top = 112
+          Width = 76
+          Height = 15
+          Caption = 'Pico Truncado'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
         end
       end
       object Panel4: TPanel
