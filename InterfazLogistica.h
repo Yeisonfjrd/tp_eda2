@@ -12,6 +12,7 @@
 #include <Vcl.Imaging.jpeg.hpp>
 #include <Vcl.Imaging.pngimage.hpp>
 #include <Vcl.StdCtrls.hpp>
+#include <Vcl.Grids.hpp>
 #include <ciudad.h>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm {
@@ -69,6 +70,10 @@ class TForm1 : public TForm {
 private:
   SistemaLogistico sistemaLogistico;
   TPaintBox *mapaOverlay;
+  TEdit *txtCiudadId;
+  TEdit *txtCiudadNombre;
+  TEdit *txtCiudadX;
+  TEdit *txtCiudadY;
   ResultadoRuta ultimaRuta;
   bool hayRutaDibujada;
   void inicializarInterfazLogistica();
@@ -79,6 +84,19 @@ private:
   void pintarRutaCalculada(TCanvas *canvas);
   void pintarCiudades(TCanvas *canvas);
   int obtenerIdCiudadSeleccionada(TComboBox *combo);
+  void construirVistaCiudades();
+  void construirVistaRutas();
+  TPanel *crearPanelSeccion(TWinControl *parent, int left, int top, int width,
+                            int height, const UnicodeString &titulo);
+  TPanel *crearBotonAccion(TWinControl *parent, int left, int top, int width,
+                           int height, const UnicodeString &caption,
+                           TColor color);
+  void actualizarCamposCiudad(int indiceCiudad);
+  void __fastcall grillaCiudadesDrawCell(TObject *Sender, int ACol, int ARow,
+                                         const TRect &Rect,
+                                         TGridDrawState State);
+  void __fastcall grillaCiudadesSelectCell(TObject *Sender, int ACol,
+                                           int ARow, bool &CanSelect);
 
 public:
   __fastcall TForm1(TComponent *Owner);
