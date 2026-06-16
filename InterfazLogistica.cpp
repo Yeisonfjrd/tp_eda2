@@ -25,19 +25,19 @@ __fastcall TForm1::TForm1(TComponent *Owner) : TForm(Owner) {
   ciudadesUI = new Ciudad[mapa->obtenerCantidadCiudades()];
   mapa->pasarListaCiudades(ciudadesUI);
   actualizarCombosCiudades(ciudadesUI);
-  txtCiudadId = nullptr;
-  txtCiudadNombre = nullptr;
-  txtCiudadX = nullptr;
-  txtCiudadY = nullptr;
-  pnlCiudades->Align = alClient;
-  pnlCiudades->Caption = "";
-  pnlCiudades->Color = clWhite;
-  pnlRutas->Color = clWhite;
-  pnlCiudades->Visible = false;
-  pnlRutas->Visible = false;
-  pnlHistorial->Visible = false;
-  pnlCalcularDistancia->Visible = true;
-  pnlCalcularDistancia->BringToFront();
+//  txtCiudadId = nullptr;
+//  txtCiudadNombre = nullptr;
+//  txtCiudadX = nullptr;
+//  txtCiudadY = nullptr;
+//  pnlCiudades->Align = alClient;
+//  pnlCiudades->Caption = "";
+//  pnlCiudades->Color = clWhite;
+//  pnlRutas->Color = clWhite;
+//  pnlCiudades->Visible = false;
+//  pnlRutas->Visible = false;
+//  pnlHistorial->Visible = false;
+//  pnlCalcularDistancia->Visible = true;
+//  pnlCalcularDistancia->BringToFront();
 
   mapaOverlay = new TPaintBox(this);
   mapaOverlay->Parent = Panel2;
@@ -127,21 +127,20 @@ void TForm1::pintarConexiones(TCanvas *canvas) {
 //
 //
 void TForm1::pintarRutaCalculada(TCanvas *canvas) {
-  if (!hayRutaDibujada || !ultimaRuta.encontrada ||
-      ultimaRuta.cantidadCiudades < 2) {
-    return;
-  }
-
-  canvas->Pen->Color = (TColor)0x00A65400;
-  canvas->Pen->Width = 5;
-  canvas->Pen->Style = psSolid;
-
-  for (int i = 0; i < ultimaRuta.cantidadCiudades - 1; i++) {
-    TPoint p1 = puntoCiudadEnMapa(ultimaRuta.camino[i]);
-    TPoint p2 = puntoCiudadEnMapa(ultimaRuta.camino[i + 1]);
-    canvas->MoveTo(p1.X, p1.Y);
-    canvas->LineTo(p2.X, p2.Y);
-  }
+//  if (!hayRutaDibujada || !ultimaRuta.encontrada ||
+//      ultimaRuta.cantidadCiudades < 2) {
+//    return;
+//  }
+//
+//  canvas->Pen->Color = (TColor)0x00A65400;
+//  canvas->Pen->Width = 5;
+//  canvas->Pen->Style = psSolid;
+//
+//  for (int i = 0; i < ultimaRuta.cantidadCiudades - 1; i++) {
+//    TPoint p1 = puntoCiudadEnMapa(ultimaRuta.camino[i]);
+//    TPoint p2 = puntoCiudadEnMapa(ultimaRuta.camino[i + 1]);
+//    canvas->MoveTo(p1.X, p1.Y);
+//    canvas->LineTo(p2.X, p2.Y);
 }
 //
 
