@@ -466,21 +466,15 @@ object Form1: TForm1
         end
         object cbDestino: TComboBox
           Left = 11
-          Top = 187
+          Top = 199
           Width = 200
-          Height = 25
+          Height = 23
           Style = csDropDownList
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Segoe UI'
-          Font.Style = []
-          ParentFont = False
           TabOrder = 0
         end
         object cbOrigen: TComboBox
           Left = 11
-          Top = 107
+          Top = 112
           Width = 200
           Height = 25
           Style = csDropDownList
@@ -530,7 +524,7 @@ object Form1: TForm1
         end
         object btnGuardarHistorial: TPanel
           Left = 11
-          Top = 367
+          Top = 599
           Width = 110
           Height = 35
           Caption = 'Guardar Historial'
@@ -563,8 +557,8 @@ object Form1: TForm1
         object picMapa: TImage
           Left = 0
           Top = 0
-          Width = 896
-          Height = 665
+          Width = 1440
+          Height = 959
           Align = alClient
           AutoSize = True
           Center = True
@@ -1555,8 +1549,10 @@ object Form1: TForm1
             0000000000000000000000000000000000000000000000000000000000000000
             0003FFD9}
           Stretch = True
-          ExplicitWidth = 1440
-          ExplicitHeight = 959
+          ExplicitLeft = 216
+          ExplicitTop = 32
+          ExplicitWidth = 896
+          ExplicitHeight = 665
         end
       end
       object Panel4: TPanel
@@ -1577,7 +1573,7 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 274
-          Height = 31
+          Height = 30
           Align = alLeft
           Caption = 'C'#193'LCULO DE RUTA '#211'PTIMA'
           Font.Charset = DEFAULT_CHARSET
@@ -1586,7 +1582,6 @@ object Form1: TForm1
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
           ParentFont = False
-          ExplicitHeight = 30
         end
       end
     end
@@ -1613,7 +1608,7 @@ object Form1: TForm1
     object lblNombreEmpresa: TLabel
       Left = 0
       Top = 0
-      Width = 1355
+      Width = 218
       Height = 21
       Align = alTop
       Caption = 'Sistema Inteligente de Logistica'
@@ -1623,7 +1618,6 @@ object Form1: TForm1
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
-      ExplicitWidth = 218
     end
   end
 end
