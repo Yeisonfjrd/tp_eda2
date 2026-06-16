@@ -14,30 +14,17 @@
 #pragma resource "*.dfm"
 TForm1 *Form1;
 Mapa *mapa = nullptr;
-int** matriz;
+int **matriz;
 Ciudad *ciudadesUI = nullptr;
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent *Owner) : TForm(Owner) {
 
   mapa = new Mapa();
-  matriz=  mapa->obtenerMatrizAdyacencia();
+  matriz = mapa->obtenerMatrizAdyacencia();
   ShowMessage(IntToStr(matriz[0][1]));
   ciudadesUI = new Ciudad[mapa->obtenerCantidadCiudades()];
   mapa->pasarListaCiudades(ciudadesUI);
   actualizarCombosCiudades(ciudadesUI);
-//  txtCiudadId = nullptr;
-//  txtCiudadNombre = nullptr;
-//  txtCiudadX = nullptr;
-//  txtCiudadY = nullptr;
-//  pnlCiudades->Align = alClient;
-//  pnlCiudades->Caption = "";
-//  pnlCiudades->Color = clWhite;
-//  pnlRutas->Color = clWhite;
-//  pnlCiudades->Visible = false;
-//  pnlRutas->Visible = false;
-//  pnlHistorial->Visible = false;
-//  pnlCalcularDistancia->Visible = true;
-//  pnlCalcularDistancia->BringToFront();
 
   mapaOverlay = new TPaintBox(this);
   mapaOverlay->Parent = Panel2;
@@ -46,6 +33,20 @@ __fastcall TForm1::TForm1(TComponent *Owner) : TForm(Owner) {
   mapaOverlay->BringToFront();
 
   pintarCiudades(mapaOverlay->Canvas);
+
+    txtCiudadId = nullptr;
+  txtCiudadNombre = nullptr;
+  txtCiudadX = nullptr;
+  txtCiudadY = nullptr;
+  pnlCiudades->Align = alClient;
+  pnlCiudades->Caption = "";
+  pnlCiudades->Color = clWhite;
+  pnlRutas->Color = clWhite;
+  pnlCiudades->Visible = false;
+  pnlRutas->Visible = false;
+  pnlHistorial->Visible = false;
+  pnlCalcularDistancia->Visible = true;
+  pnlCalcularDistancia->BringToFront();
 }
 // void TForm1::inicializarInterfazLogistica() {
 //   picMapa->Left = 0;
@@ -127,74 +128,94 @@ void TForm1::pintarConexiones(TCanvas *canvas) {
 //
 //
 void TForm1::pintarRutaCalculada(TCanvas *canvas) {
-//  if (!hayRutaDibujada || !ultimaRuta.encontrada ||
-//      ultimaRuta.cantidadCiudades < 2) {
-//    return;
-//  }
-//
-//  canvas->Pen->Color = (TColor)0x00A65400;
-//  canvas->Pen->Width = 5;
-//  canvas->Pen->Style = psSolid;
-//
-//  for (int i = 0; i < ultimaRuta.cantidadCiudades - 1; i++) {
-//    TPoint p1 = puntoCiudadEnMapa(ultimaRuta.camino[i]);
-//    TPoint p2 = puntoCiudadEnMapa(ultimaRuta.camino[i + 1]);
-//    canvas->MoveTo(p1.X, p1.Y);
-//    canvas->LineTo(p2.X, p2.Y);
+  //  if (!hayRutaDibujada || !ultimaRuta.encontrada ||
+  //      ultimaRuta.cantidadCiudades < 2) {
+  //    return;
+  //  }
+  //
+  //  canvas->Pen->Color = (TColor)0x00A65400;
+  //  canvas->Pen->Width = 5;
+  //  canvas->Pen->Style = psSolid;
+  //
+  //  for (int i = 0; i < ultimaRuta.cantidadCiudades - 1; i++) {
+  //    TPoint p1 = puntoCiudadEnMapa(ultimaRuta.camino[i]);
+  //    TPoint p2 = puntoCiudadEnMapa(ultimaRuta.camino[i + 1]);
+  //    canvas->MoveTo(p1.X, p1.Y);
+  //    canvas->LineTo(p2.X, p2.Y);
 }
 //
 
 void TForm1::pintarCiudades(TCanvas *canvas) {
-  // 1. Configuramos la fuente del texto (Tipografía, tamaño y negrita)
+  // Configuramos la fuente y pincel base
   canvas->Font->Name = "Segoe UI";
-  canvas->Font->Size = 9;
+  canvas->Font->Size = 7;
   canvas->Font->Style = TFontStyles() << fsBold;
   canvas->Brush->Style = bsSolid;
 
-  for (int i = 0; i < mapa->obtenerCantidadCiudades(); i++) {
-    // Filtramos que la ciudad esté activa en la UI
+  // -------------------------------------------------------------------------
+  // FASE 1: DIBUJAR LAS RUTAS (LÍNEAS) EXISTENTES
+  // -------------------------------------------------------------------------
+  int **matrizUI = mapa->obtenerMatrizAdyacencia();
+  int totalCiudades = mapa->obtenerCantidadCiudades();
+
+  // Configuramos el lápiz para las calles/rutas iniciales
+  canvas->Pen->Color = clGray; // Un color gris para que no compita con el azul
+  canvas->Pen->Width = 2;      // Grosor de la línea de la calle
+
+  for (int i = 0; i < totalCiudades; i++) {
+    // Solo procesamos si la ciudad de origen está activa
     if (ciudadesUI[i].obtenerEstado() == true) {
 
-      // --- EL NEXO QUE FALTABA: EXTRAER LAS COORDENADAS REALES ---
-      // Le pedimos el struct Coordenadas a la ciudad actual del array
-      Coordenadas coords = ciudadesUI[i].obtenerCoordenadas();
+      // El truco 'j = i + 1' evita procesar la diagonal (0) y pintar rutas
+      // duplicadas
+      for (int j = i + 1; j < totalCiudades; j++) {
 
-      // Guardamos X e Y en variables locales para que el código sea legible
+        // Verificamos que la ciudad destino también esté activa y que exista
+        // ruta real
+        if (ciudadesUI[j].obtenerEstado() == true && matrizUI[i][j] != 0 &&
+            matrizUI[i][j] != -1) {
+
+          // Extraemos las coordenadas de la ciudad de Origen (i)
+          Coordenadas coordsOrigen = ciudadesUI[i].obtenerCoordenadas();
+          // Extraemos las coordenadas de la ciudad de Destino (j)
+          Coordenadas coordsDestino = ciudadesUI[j].obtenerCoordenadas();
+
+          // TCanvas usa MoveTo para apoyar el lápiz y LineTo para trazar la
+          // línea
+          canvas->MoveTo((int)coordsOrigen.x, (int)coordsOrigen.y);
+          canvas->LineTo((int)coordsDestino.x, (int)coordsDestino.y);
+        }
+      }
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // FASE 2: DIBUJAR LOS CÍRCULOS Y TEXTOS (Tu código actual intacto)
+  // -------------------------------------------------------------------------
+  for (int i = 0; i < totalCiudades; i++) {
+    if (ciudadesUI[i].obtenerEstado() == true) {
+      Coordenadas coords = ciudadesUI[i].obtenerCoordenadas();
       int posX = (int)coords.x;
       int posY = (int)coords.y;
-      // -----------------------------------------------------------
 
-      // 2. DIBUJAR EL CÍRCULO (El nodo de la ciudad)
-      // Creamos un rectángulo virtual de 22x22 píxeles centrado en la
-      // coordenada
+      // 2. DIBUJAR EL CÍRCULO
       TRect circulo(posX - 11, posY - 11, posX + 11, posY + 11);
+      canvas->Brush->Color = clBlue;
+      canvas->Pen->Color = clWhite;
+      canvas->Pen->Width = 2;
+      canvas->Ellipse(circulo);
 
-	  canvas->Brush->Color = clBlue; // Relleno blanco para el círculo
-      canvas->Pen->Color =
-		  clWhite;            // Borde negro (o clWhite si el fondo es oscuro)
-      canvas->Pen->Width = 2; // Grosor del borde
-      canvas->Ellipse(
-          circulo); // Dibuja el círculo perfecto dentro del rectángulo
-
-      // 3. DIBUJAR EL ID ADENTRO DEL CÍRCULO
-      canvas->Brush->Style =
-          bsClear; // Fondo transparente para que no tape el círculo
-      canvas->Font->Color = clWhite; // Texto del ID en negro
-
-      // Centramos el número restando unos píxeles a la coordenada central
+      // 3. DIBUJAR EL ID ADENTRO
+      canvas->Brush->Style = bsClear;
+      canvas->Font->Color = clWhite;
       canvas->TextOut(posX - 4, posY - 8, IntToStr(ciudadesUI[i].obtenerId()));
 
-      // 4. DIBUJAR EL NOMBRE AL COSTADO DEL CÍRCULO
-      canvas->Font->Color =
-          clBlue; // Podés usar azul o el color que quieras para el nombre
-
-      // Lo desplazamos 15 píxeles a la derecha (posX + 15) para que no se pise
-      // con el círculo
+      // 4. DIBUJAR EL NOMBRE AL COSTADO
+      canvas->Font->Color = clBlue;
       UnicodeString nombreUI =
           UnicodeString(ciudadesUI[i].obtenerNombre().c_str());
       canvas->TextOut(posX + 15, posY - 9, nombreUI);
 
-      // Restauramos el estilo del pincel para la siguiente ciudad
       canvas->Brush->Style = bsSolid;
     }
   }
@@ -326,7 +347,7 @@ void TForm1::construirVistaCiudades() {
   grilla->Parent = panelListado;
   grilla->SetBounds(20, 76, 480, 440);
   grilla->ColCount = 4;
-  grilla->RowCount = mapa->obtenerCantidadCiudades() + 5;
+  grilla->RowCount = mapa->obtenerCantidadCiudades()+1;
   grilla->FixedRows = 1;
   grilla->DefaultRowHeight = 44;
   grilla->FixedColor = clWhite;
@@ -363,10 +384,9 @@ void TForm1::construirVistaCiudades() {
   }
 
   int indiceDatos = cantidad > 0 ? cantidad - 1 : 0;
-  UnicodeString etiquetas[4] = {"ID:", "Nombre:", "Coordenada X:",
-                                "Coordenada Y:"};
-  TEdit **edits[4] = {&txtCiudadId, &txtCiudadNombre, &txtCiudadX,
-                      &txtCiudadY};
+  UnicodeString etiquetas[4] = {
+      "ID:", "Nombre:", "Coordenada X:", "Coordenada Y:"};
+  TEdit **edits[4] = {&txtCiudadId, &txtCiudadNombre, &txtCiudadX, &txtCiudadY};
 
   for (int i = 0; i < 4; i++) {
     TLabel *lbl = new TLabel(this);
@@ -484,11 +504,11 @@ void __fastcall TForm1::PanelMouseLeave(TObject *Sender) {
 }
 
 void __fastcall TForm1::btnCalcularRutasClick(TObject *Sender) {
-   pnlCiudades->Visible = false;
-   pnlHistorial->Visible = false;
-   pnlRutas->Visible = false;
-   pnlCalcularDistancia->Visible = true;
-   pnlCalcularDistancia->BringToFront();
+  pnlCiudades->Visible = false;
+  pnlHistorial->Visible = false;
+  pnlRutas->Visible = false;
+  pnlCalcularDistancia->Visible = true;
+  pnlCalcularDistancia->BringToFront();
 }
 //---------------------------------------------------------------------------
 
@@ -567,6 +587,3 @@ void __fastcall TForm1::MapaOverlayPaint(TObject *Sender) {
   pintarRutaCalculada(mapaOverlay->Canvas);
   pintarCiudades(mapaOverlay->Canvas);
 }
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-
