@@ -18,13 +18,13 @@ struct CiudadLogistica {
 	bool editable;
 };
 
-struct ResultadoRuta {
-	bool encontrada;
-	std::string mensaje;
-	int camino[MAX_RUTAS_CAMINO];
-	int cantidadCiudades;
-	double distanciaKm;
-};
+//struct ResultadoRuta {
+//	bool encontrada;
+//	std::string mensaje;
+//	int camino[MAX_RUTAS_CAMINO];
+//	int cantidadCiudades;
+//	double distanciaKm;
+//};
 
 struct RegistroHistorial {
 	int origen;
@@ -57,9 +57,9 @@ public:
 	bool darAltaCiudad(int id);
 	bool darBajaCiudad(int id);
 
-	ResultadoRuta calcularRutaOptima(int origen, int destino);
-	std::string describirRuta(const ResultadoRuta &resultado) const;
-	void guardarEnHistorial(int origen, int destino, const ResultadoRuta &resultado);
+//	ResultadoRuta calcularRutaOptima(int origen, int destino);
+//	std::string describirRuta(const ResultadoRuta &resultado) const;
+//	void guardarEnHistorial(int origen, int destino, const ResultadoRuta &resultado);
 
 	int obtenerCantidadHistorial() const;
 	const RegistroHistorial& obtenerHistorial(int indice) const;

@@ -75,7 +75,6 @@ private:
   void actualizarCombosCiudades(Ciudad* ciudadesUI);
   void redibujarMapa();
   TPoint puntoCiudadEnMapa(int id) const;
-  void pintarConexiones(TCanvas *canvas);
   void pintarRutaCalculada(TCanvas *canvas);
   void pintarCiudades(TCanvas *canvas);
   int obtenerIdCiudadSeleccionada(TComboBox *combo);

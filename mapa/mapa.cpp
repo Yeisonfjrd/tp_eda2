@@ -37,12 +37,12 @@ Mapa::Mapa() {
 
   int fila = 0;
   while (std::getline(matriz, linea)) {
-    std::stringstream ss(linea);
+	std::stringstream ss(linea);
     int valor;
-    int columna = 0;
+	int columna = 0;
 
-    // el ">>" se saltea espacios en blanco y tabs
-    while (ss >> valor && columna < cantidadCiudades) {
+	// el ">>" se saltea espacios en blanco y tabs
+	while (ss >> valor && columna < cantidadCiudades) {
       matrizAdyacencia[fila][columna] = valor;
       columna++;
     }
